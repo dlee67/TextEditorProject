@@ -142,6 +142,10 @@ public class NeedsPeerReview extends Application {
             new FileChooser.ExtensionFilter("standard text files", "*.txt"),
             new FileChooser.ExtensionFilter("java files", "*.java"));
         File saveAsFile = fileSaver.showSaveDialog(new Stage());
+        if(saveAsFile == null){
+            System.out.println("Cancel selected.");
+            return;
+        }
         
         for(int c = 0; c < tbPane.getTabs().size(); c++){
             if(tbPane.getTabs().get(c).isSelected()){
@@ -169,6 +173,13 @@ public class NeedsPeerReview extends Application {
     public void loadSource(){
         fileLoader.setTitle("FileChooser");
         File loadedFile = fileLoader.showOpenDialog(new Stage());
+        
+        //If not .txt, deal with it accordingly.
+        if(!(loadedFile.getName().contains(".txt"))){
+            System.out.println("Not txt, returning from loadSource()");
+            return;
+        }
+        
         Tab newTab = getCompleteTab();
         ScrollPane newScrl = (ScrollPane) newTab.getContent();
         TextArea newTxtAr = (TextArea) newScrl.getContent();
@@ -201,21 +212,14 @@ public class NeedsPeerReview extends Application {
                 tabFiles.put(newTab, null);
             }
         });
-        tstBar.getMenus().get(0).getItems().get(1).setOnAction(new EventHandler<ActionEvent>(){
-            public void handle(ActionEvent e){
-                saveSource();
-            }
-        });
-        tstBar.getMenus().get(0).getItems().get(2).setOnAction(new EventHandler<ActionEvent>(){
-            public void handle(ActionEvent e){
-                loadSource();
-            }
-        });
-        tstBar.getMenus().get(0).getItems().get(3).setOnAction(new EventHandler<ActionEvent>(){
-            public void handle(ActionEvent e){
-                saveSourceAs();
-            }
-        });            
+        /*
+           11/04/17 
+           Those three lines were composed of anounymous classes, but now,
+           they are lambdas.
+        */
+        tstBar.getMenus().get(0).getItems().get(1).setOnAction((ActionEvent) -> saveSource());
+        tstBar.getMenus().get(0).getItems().get(2).setOnAction((ActionEvent) -> loadSource());
+        tstBar.getMenus().get(0).getItems().get(3).setOnAction((ActionEvent) -> saveSourceAs());            
     }
           
     public void start(Stage primaryStage) {
