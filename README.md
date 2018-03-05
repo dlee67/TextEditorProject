@@ -6,7 +6,7 @@ For some reason, after saving a text file with notepad++, my editor isn't able t
 
 # To run
 In the shell of your choice, after changing directory where the program resides, type in the following:
-'''
+'''bash
 javac NeedsPeerReview.java
 java NeedsPeerReview
 '''
