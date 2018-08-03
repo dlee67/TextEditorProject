@@ -11,3 +11,7 @@ javac NeedsPeerReview.java
 java NeedsPeerReview
 ```
 <img src="./Screenshot from 2018-08-03 09-30-40.png"/>
+
+# Is it done?
+It's not. The codebase is monolithic, and it's better to drop it, and start it again if I want to continue.
+
