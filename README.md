@@ -10,3 +10,4 @@ In the shell of your choice, after changing directory where the program resides,
 javac NeedsPeerReview.java
 java NeedsPeerReview
 ```
+<img src="./Screenshot from 2018-08-03 09-30-40.png"/>
